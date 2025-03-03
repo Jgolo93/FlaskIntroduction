@@ -4,10 +4,9 @@ from flask import Flask, render_template
 from flask import Flask, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///test.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
 class todo(db.Model):
@@ -65,4 +64,4 @@ def update(id):
         return render_template('update.html', task=task)  
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
